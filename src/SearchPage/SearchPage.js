@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
+import axios from 'axios';
+import { Route, Switch } from 'react-router-dom';
+import { withRouter } from "react-router-dom";
+
 import InputContainer from './InputContainer/InputContainer';
 import Results from './Results/Results';
 import Albums from './Albums/Albums';
 
-import axios from 'axios';
-import { Route, Switch } from 'react-router-dom';
-import { withRouter } from "react-router-dom";
+
 
 const API_KEY = 'c06728309b384d47ffce7566b4e78801';
 
@@ -60,15 +62,18 @@ class SearchPage extends Component {
                     albums: allAlbums,
                     curArtistName: name
                 });
-            this.props.history.push('/albums');
+                this.props.history.push('/albums');
             })
             .catch(error => {
                 console.error(error)
             });
-        
     }
 
-
+    handleKeyPress = (event) => {
+        if(event.key === 'Enter'){
+          this.sendSearchArtistRequest();
+        }
+      }
 
     render() {
         return (
@@ -76,7 +81,9 @@ class SearchPage extends Component {
                 <Switch>
                     <Route exact path='/albums' render={(props) => (
                         <div>
-                            <Albums albums={this.state.albums} isRequested={this.state.albumIsRequested} curArtistName={this.state.curArtistName} />
+                            <Albums albums={this.state.albums}
+                                isRequested={this.state.albumIsRequested}
+                                curArtistName={this.state.curArtistName} />
                         </div>
                     )} />
                     <Route exact path='/' render={(props) => (
@@ -84,10 +91,11 @@ class SearchPage extends Component {
                             <InputContainer value={this.state.inputValue}
                                 changed={(event) => this.inputHandler(event)}
                                 searchRequest={this.sendSearchArtistRequest}
-                                error={this.state.error} />
+                                error={this.state.error}
+                                enterHandler={this.handleKeyPress} />
                             <Results results={this.state.results}
-                             clicked={this.sendSearchAlbumRequest}
-                              />
+                                clicked={this.sendSearchAlbumRequest}
+                            />
                         </div>
                     )} />
                     <Route render={() => <h1>Страница не найдена</h1>} />
@@ -99,11 +107,3 @@ class SearchPage extends Component {
 
 
 export default withRouter(SearchPage);
-
-
-{/* <InputContainer value={this.state.inputValue}
-                    changed={(event) => this.inputHandler(event)}
-                    searchRequest={this.sendSearchArtistRequest}
-                    error={this.state.error} />
-                <Results results={this.state.results} clicked={this.sendSearchAlbumRequest} />
-                <Albums albums={this.state.albums} isRequested={this.state.albumIsRequested} /> */}

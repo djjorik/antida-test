@@ -19,15 +19,16 @@ const inputContainer = (props) => {
 
     return (
         <div className="InputContainer">
-            {/* <span>Поиск:</span> */}
             <div className="wrapper">
                 <FormControl
                     type="text"
                     placeholder="Введите имя исполнителя"
                     value={props.value}
                     onChange={props.changed}
+                    onKeyPress={props.enterHandler}
                 />
-                <Button bsStyle="success" onClick={props.searchRequest}>Искать</Button>
+                <Button bsStyle="success" onClick={props.searchRequest}
+                    >Искать</Button>
             </div>
             <span>{error}</span>
         </div>

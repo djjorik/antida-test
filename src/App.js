@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
+import { BrowserRouter } from 'react-router-dom';
 
 import './App.css';
-import { BrowserRouter } from 'react-router-dom';
 
 import SearchPage from './SearchPage/SearchPage';
 
