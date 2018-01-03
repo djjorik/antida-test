@@ -1,0 +1,27 @@
+.Albums {
+    display: flex;
+    flex-flow: column;
+    padding-top: 20px;
+}
+.Albums strong {
+    font-size: 22px;
+}
+.Albums
+.wrapper {
+    display: flex;
+    flex-flow: row;
+    flex-wrap: wrap;
+    margin-top: 30px;
+}
+.Albums 
+.imageBlock {
+    width: 190px;
+    height: 190px;
+}
+.Albums
+.imageBlock span:first-child {
+    margin-bottom: 15px;
+    font-weight: bold;
+    font-size: 18px;
+    display: block;
+}

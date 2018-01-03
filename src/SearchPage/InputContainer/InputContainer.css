@@ -1,0 +1,21 @@
+.InputContainer{
+    display: flex;
+    flex-flow: column;
+    margin-top: 30px;
+    margin-bottom: 40px;
+}
+.InputContainer
+.wrapper{
+    display: flex;
+    flex-flow: row;
+    margin: auto;
+}
+.InputContainer span{
+    line-height: 34px;
+    color: rgb(245, 78, 78);
+    font-weight: bold;
+}
+.InputContainer input{
+    width: 300px;
+    margin-right: 5px;
+}
