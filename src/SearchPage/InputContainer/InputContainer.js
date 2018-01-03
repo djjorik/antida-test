@@ -7,11 +7,6 @@ import FormControl from 'react-bootstrap/lib/FormControl';
 
 
 const inputContainer = (props) => {
-    let searchWord = null;
-    if (props.value) {
-        searchWord = props.value;
-    }
-
     let error = null;
     if (props.error) {
         error = props.error
