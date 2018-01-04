@@ -4,7 +4,7 @@ import { Route, Switch } from 'react-router-dom';
 import { withRouter } from "react-router-dom";
 
 import InputContainer from './InputContainer/InputContainer';
-import Results from './Results/Results';
+import Artists from './Artists/Artists';
 import Albums from './Albums/Albums';
 
 
@@ -15,7 +15,7 @@ const API_KEY = 'c06728309b384d47ffce7566b4e78801';
 class SearchPage extends Component {
     state = {
         inputValue: '',
-        results: [],
+        artists: [],
         albums: [],
         albumIsRequested: false,
         error: '',
@@ -32,7 +32,7 @@ class SearchPage extends Component {
     sendSearchArtistRequest = () => {
         axios.get('http://ws.audioscrobbler.com/2.0/?method=artist.search&artist=' + this.state.inputValue + '&api_key=' + API_KEY + '&format=json')
             .then(response => {
-                console.log(response);
+                console.log('response Artist');
                 this.setState({
                     ...this.state,
                     error: ''
@@ -41,10 +41,11 @@ class SearchPage extends Component {
 
                 this.setState({
                     ...this.state,
-                    results: allArtists
+                    artists: allArtists
                 });
             })
             .catch(error => {
+                console.log('error Artist')
                 this.setState({
                     ...this.state,
                     error: 'Вы не правильно ввели имя исполнителя'
@@ -93,7 +94,7 @@ class SearchPage extends Component {
                                 searchRequest={this.sendSearchArtistRequest}
                                 error={this.state.error}
                                 enterHandler={this.handleKeyPress} />
-                            <Results results={this.state.results}
+                            <Artists artists={this.state.artists}
                                 clicked={this.sendSearchAlbumRequest}
                             />
                         </div>
